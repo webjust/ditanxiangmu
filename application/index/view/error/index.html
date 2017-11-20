@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>网站无法访问</title>
+    <link href="/static/home/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/home/css/site.min.css" rel="stylesheet">
+    <link href="/static/home/css/custom.css" rel="stylesheet">
+</head>
+<body style="background-color: palegoldenrod">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form class="form-horizontal" action="{:url('Index/Error/check')}" method="post">
+                <div class="form-group">
+                    <label for="pass" class="col-sm-3 control-label">密码：</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="pass" class="form-control" id="pass" placeholder="输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+<script src="/static/home/js/jquery.min.js"></script>
+<script src="/static/home/js/bootstrap.min.js"></script>
+</body>
+</html>

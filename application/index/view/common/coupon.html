@@ -1,0 +1,20 @@
+<div class="container">
+    <p style="text-align: center;">
+        <a href="#"><span id="test"></span>现在订货，抢 <strong style="color: red">￥88.88</strong> 红包。</a>
+    </p>
+</div>
+<script src="/static/layer/layui.js"></script>
+<script>
+    layui.use('util', function(){
+        var util = layui.util;
+
+        //示例
+        var endTime = new Date(2017,10,25).getTime() //假设为结束日期
+            ,serverTime = new Date().getTime(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+
+        util.countdown(endTime, serverTime, function(date, serverTime, timer){
+            var str = date[0] + '天' + date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+            layui.$('#test').html('还有：'+ str);
+        });
+    });
+</script>

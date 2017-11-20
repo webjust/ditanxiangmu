@@ -1,0 +1,39 @@
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item {:menu_item_select($action_name, 'goods')}">
+                <a class="" href="javascript:;">项目管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('goods/index')}">项目列表</a></dd>
+                    <dd><a href="{:url('goods/add')}">添加项目</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {:menu_item_select($action_name, 'comments')}">
+                <a href="javascript:;">评论管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('comments/index')}">评论列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {:menu_item_select($action_name, 'site')}">
+                <a href="javascript:;">站点设置</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{:url('site/ip')}">屏蔽IP</a></dd>
+                    <dd><a href="{:url('site/about')}">我们介绍</a></dd>
+                    <dd><a href="{:url('site/repass')}">修改密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item {:menu_item_select($action_name, 'banner')}">
+                <a href="{:url('banner/index')}">广告管理</a>
+            </li>
+            <li class="layui-nav-item {:menu_item_select($action_name, 'log')}">
+                <a href="javascript:;">数据统计</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">管理员日志</a></dd>
+                    <dd><a href="{:url('log/view_page')}">流量日志</a></dd>
+                    <dd><a href="javascript:;">项目排行版</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>

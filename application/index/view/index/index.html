@@ -1,0 +1,24 @@
+{include file="common/banner" /}
+<h2 class="site_title">精选推荐地摊项目
+    <small>订阅微信公众号，定期发布地摊实战案例</small>
+</h2>
+<div class="container-fluid">
+    <div class="row">
+        {volist name="goods" id="vo" empty="暂无数据"}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href="{:url('Index/index/detail', ['id' => $vo['g_id']])}"><img src="{$vo['lit_img']}" alt="..."></a>
+                <div class="caption">
+                    <h3>{$vo['goods_name']}</h3>
+                    <p>{$vo['description']}</p>
+                    <div class="info">
+                        <span>启动资金：<i class="money">&yen; {$vo['money']}</i></span>
+                    </div>
+                    <div class="view-custom"><p><a href="{:url('Index/index/detail', ['id' => $vo['g_id']])}" class="btn btn-primary" role="button">项目详情</a> <button type="button" class="btn" data-toggle="popover" title="联系我们" data-placement="top" data-content="电话/微信：18867569227">咨询发货</button>
+                    </p></div>
+                </div>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>

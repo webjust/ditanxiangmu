@@ -1,0 +1,14 @@
+.view-custom {
+    padding: 5px 0;
+}
+.site_title {
+    text-align: center;
+    padding: 20px;
+}
+H1.site_h1 {
+    letter-spacing: 8px;
+}
+.caption .info .money {
+    color: orangered;
+    font-weight: bold;
+}

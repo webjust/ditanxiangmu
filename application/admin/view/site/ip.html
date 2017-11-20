@@ -1,0 +1,71 @@
+<script src="/static/layer/layui.all.js"></script>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>屏蔽IP管理</legend>
+</fieldset>
+<div style="width: 500px;">
+    <form class="layui-form" action="{:url('Admin/Site/doIp')}" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">开始网段</label>
+            <div class="layui-input-block">
+                <input type="text" name="ip_address_start" required="required" autocomplete="off" placeholder="如：183.128.0.0" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">结束网段</label>
+            <div class="layui-input-block">
+                <input type="text" name="ip_address_end" required="required" autocomplete="off" placeholder="如：183.159.255.255" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">简述</label>
+            <div class="layui-input-block">
+                <input type="text" name="desc" required="required" autocomplete="off" placeholder="如：浙江金华" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="required">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<blockquote class="layui-elem-quote">
+    屏蔽IP：目前暂支持根据网段来屏蔽IP。暂时没有实现指定IP的屏蔽。
+    <br>
+    小心处理：请准确填写网段的IP地址，填写错误，可能会导致正常的用户也被屏蔽在外。
+    <br>
+    维护的IP库，做好定期的备份。目前只支持添加和删除网段功能，无法进行编辑修改。
+    <br>
+    数据来源：<a href="http://ips.chacuo.net/">IP网段查询网站</a>
+</blockquote>
+
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>已添加IP段：</legend>
+</fieldset>
+<div class="data">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>开始网段</th>
+            <th>结束网段</th>
+            <th>简介</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="ips" id="vo"}
+        <tr>
+            <td>{$vo['ip_id']}</td>
+            <td>{$vo['ip_address_start']}</td>
+            <td>{$vo['ip_address_end']}</td>
+            <td>{$vo['desc']}</td>
+            <?php $del_url = url("Admin/Site/delIp", array('id' => $vo['ip_id'])) ?>
+            <td><a href="javascript:void(0);" onclick="btn_del('{$del_url}')">删除</a></td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>

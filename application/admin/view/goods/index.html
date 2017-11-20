@@ -1,0 +1,53 @@
+<script src="/static/layer/layui.all.js"></script>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>商品列表</legend>
+</fieldset>
+<form id="list_order_form">
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>排序</th>
+                <th>ID</th>
+                <th>名称</th>
+                <th>图片</th>
+                <th>查看次数</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {volist name="goods" id="vo" empty="$empty"}
+        <tr>
+            <td><input type="text" name="listorder[{$vo['g_id']}]" value="{$vo['listorder']}" style="width: 40px"></td>
+            <td>{$vo['g_id']}</td>
+            <td>{$vo['goods_name']}</td>
+            <td><img src="{$vo['lit_img']}" width="200" alt=""></td>
+            <td>{$vo['view_count']}</td>
+            <td><button class="layui-btn layui-btn-small {$vo['status']?'':'layui-btn-danger'} layui-btn-radius btn_on_off" attr-id="{$vo['g_id']}" attr-status="{$vo['status']}" type="button">{$vo['status_text']}</button></td>
+            <td>{$vo['create_time']}</td>
+            <?php $del_url = url('Goods/del', array('id' => $vo['g_id'])) ?>
+            <td>编辑 <button type="button" class="" href="javascript:void(0);" onclick="btn_del('{$del_url}')"><i class="layui-icon">&#xe640;</i></button></td>
+        </tr>
+        {/volist}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="99">
+                <div class="layui-row">
+                    <div class="layui-col-xs6"><button type="button" class="layui-btn layui-btn-small layui-btn-normal" id="button_listorder"><i class="layui-icon">&#xe60a;</i> 排序</button></div>
+                    <div class="layui-col-xs6" style="text-align: right;">{$page}</div>
+                </div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+
+<script>
+    var SCOPE = {
+        'jump_url' : "{:url('Admin/Goods/index')}",
+        'listorder_url' : "{:url('Admin/Goods/listorder')}",    // 排序
+        'set_status_url' : "{:url('Admin/Goods/setstatus')}",   // 状态
+    }
+</script>

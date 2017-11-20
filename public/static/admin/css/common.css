@@ -1,0 +1,9 @@
+.pagination li{
+    display: inline-block;
+    padding: 3px;
+    text-align: center;
+    width: 20px;
+}
+.pagination li.active {
+    border: 1px solid #CCCCCC;
+}

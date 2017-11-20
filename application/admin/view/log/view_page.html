@@ -1,0 +1,31 @@
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>访问日志</legend>
+</fieldset>
+
+<div class="data">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>访问路径</th>
+            <th>IP</th>
+            <th>访问时间</th>
+        </tr>
+        </thead>
+        <tbody>
+            {volist name="logs" id="vo"}
+                <tr>
+                    <td>{$vo['log_id']}</td>
+                    <td>{$vo['path']}</td>
+                    <td>{$vo['ip']}</td>
+                    <td>{$vo['create_time']}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="99">{$page}</td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
