@@ -12,6 +12,12 @@ class Ads extends Base
         //config('template', ['layout_on' => false]);
     }
 
+    public function index()
+    {
+        $this->title("全部地摊广告");
+        return $this->fetch();
+    }
+
     public function ad()
     {
         //config('template', ['layout_on' => false]);
@@ -21,5 +27,23 @@ class Ads extends Base
             return $this->fetch('ad3');
         }
         return $this->fetch('ad2');
+    }
+
+    public function ad1()
+    {
+        $this->title("海澜之家剪标羽绒服");
+        return $this->fetch();
+    }
+
+    public function ad2()
+    {
+        $this->title("棉里爱");
+        return $this->fetch();
+    }
+
+    public function ad3()
+    {
+        $this->title("韩国超市中国店倒闭下架精品筷");
+        return $this->fetch();
     }
 }
