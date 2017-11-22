@@ -7,3 +7,33 @@
     2. 新增访客数量 <br>
     3. 注册手机号 <br>
 </blockquote>
+
+<table class="layui-table">
+    <tr>
+        <th>昨天访问页面数</th>
+        <th>上周访问页面数</th>
+        <th>过去30天访问页面数</th>
+    </tr>
+    <tr>
+        <td>{$yesterday} - {if condition="$yesterday > $week/7"}上升{else /}下降{/if}</td>
+        <td>总计：{$week} 平均：{$week/7}/天</td>
+        <td>总计：{$month} 平均：{$month/30}/天</td>
+    </tr>
+</table>
+
+<table class="layui-table">
+    <tr>
+        <th>过去7天访问页面数量：</th>
+    </tr>
+    <tr>
+        <td>
+            1天前：{$days['0']} <br>
+            2天前：{$days['1']} <br>
+            3天前：{$days['2']} <br>
+            4天前：{$days['3']} <br>
+            5天前：{$days['4']} <br>
+            6天前：{$days['5']} <br>
+            7天前：{$days['6']} <br>
+        </td>
+    </tr>
+</table>
