@@ -1,0 +1,97 @@
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>编辑商品</legend>
+</fieldset>
+<div style="width: 1120px;">
+    <form class="layui-form layui-form-pane1" action="{:url('Goods/add')}" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="goods_name" lay-verify="required|goods_name" required placeholder="请输入产品名称" autocomplete="off" class="layui-input" value="{$goods.goods_name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">启动资金</label>
+            <div class="layui-input-block">
+                <input type="text" name="money" lay-verify="required|money" required placeholder="请输入启动资金" autocomplete="off" class="layui-input" value="{$goods.money}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">封面图片</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="upload_img">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button> <span style="color: #999999;">尺寸：600 * 450 px</span>
+            </div>
+            {if condition="$goods.lit_img"}
+            <div style="margin-left: 110px; margin-top: 10px;">
+                <img src="{$goods.lit_img}" id="upload_lit_img" width="200" style="display: block">
+                <input type="hidden" name="lit_img" id="lit_img" value="" />
+            </div>
+            {else /}
+            <div style="margin-left: 110px; margin-top: 10px;">
+                <img src="" id="upload_lit_img" width="200" style="display: none">
+                <input type="hidden" name="lit_img" id="lit_img" value="" />
+            </div>
+            {/if}
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">请填写描述</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请填写描述" name="description" class="layui-textarea">{$goods.description}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细介绍</label>
+            <div class="layui-input-block">
+                <!-- 加载编辑器的容器 -->
+                <script id="container" name="content" type="text/plain">{$goods['detail']['content']}</script>
+            </div>
+        </div>
+        <input type="hidden" name="g_id" value="{$goods.g_id}" />
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var UPLOAD_IMAGE = '{:url("Api/Image/upload")}';     // 图片上传
+    var ue = UE.getEditor('container', {
+        initialFrameWidth : 1000,
+        autoHeightEnabled : true,
+        zIndex : 999999,
+    });
+
+    layui.use('upload', function(){
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#upload_img' //绑定元素
+            ,url: UPLOAD_IMAGE //上传接口
+            ,done: function(res){
+                //上传完毕回调
+                console.log(res.data.src);
+                if (res.code != 1) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                if (res.code == 1) {
+                    $("#upload_lit_img").attr("src", res.data.src);
+                    $("#upload_lit_img").show();
+                    $("#lit_img").attr("value", res.data.src);
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+                layer.msg("上传失败");
+            }
+        });
+    });
+</script>

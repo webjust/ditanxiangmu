@@ -44,6 +44,7 @@ class Goods extends BaseModel
         return $ret;
     }
 
+    // 修改状态
     public function setStatus($id, $status)
     {
         if (!$id || !is_numeric($id))
@@ -70,5 +71,15 @@ class Goods extends BaseModel
     {
         $status = [0 => '关闭', 1 => '显示'];
         return $status[$data['status']];
+    }
+
+    /*根据ID获取产品信息*/
+    public static function getGoodsById($g_id)
+    {
+        if (!$g_id) {
+            throw new Exception("ID非法值");
+        }
+        $ret = self::where(['g_id' => $g_id])->with('detail')->find();
+        return $ret;
     }
 }
