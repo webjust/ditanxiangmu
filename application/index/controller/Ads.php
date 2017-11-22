@@ -17,9 +17,9 @@ class Ads extends Base
         //config('template', ['layout_on' => false]);
         $this->title('地摊项目网 - 精选地摊创业项目');
         $ads_num = mt_rand(0, 1);
-        if ($ads_num) {
+        /*if ($ads_num) {
             return $this->fetch('ad1');
-        }
-        return $this->fetch('ad2');
+        }*/
+        return $this->fetch('ad3');
     }
 }
