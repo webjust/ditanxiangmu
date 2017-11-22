@@ -16,7 +16,39 @@ class Site extends Base
     // 修改密码
     public function repass()
     {
-        return $this->fetch();
+        $user = $this->getLoginUser()->username;
+        $user_password = $this->getLoginUser()->password;   // 旧密码
+        if (request()->isPost()) {
+            $data = input('post.');
+            // 校验
+            $old_password = trim($data['old_password']);
+            $password = trim($data['password']);
+            $repassword = trim($data['repassword']);
+            if (empty($old_password) || empty($password) || empty($repassword))
+                $this->error("密码不能为空");
+
+            if ($user_password != md5($old_password . config('pre_md5')))
+            {
+                $this->error("原始密码输入错误");
+            }
+            if ($password != $repassword) {
+                $this->error("两次输入的新密码不一致");
+            }
+            if (strlen($password) < 5) {
+                $this->error("密码长度至少为5位数");
+            }
+
+            $newpass['password'] = md5($password . config('pre_md5'));
+            $ret = model('Admin')->where(['username' => $user])->update($newpass);
+            if ($ret) {
+                session('admin', null);
+                $this->success("新密码修改成功，请重新登录", url('admin/login/index'));
+            } else {
+                $this->error("新密码修改失败");
+            }
+        } else {
+            return $this->fetch();
+        }
     }
 
     // 屏蔽IP

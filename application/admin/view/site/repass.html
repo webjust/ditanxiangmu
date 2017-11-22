@@ -1,3 +1,32 @@
 <fieldset class="layui-elem-field layui-field-title">
     <legend>修改密码</legend>
 </fieldset>
+
+<div class="layui-row">
+    <div class="layui-col-xs5">
+        <form class="layui-form layui-form-pane1" action="{:url('site/repass')}" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">原始密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="old_password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" required>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">新密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" required>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">重复新密码</label>
+                <div class="layui-input-block">
+                    <input type="password" name="repassword" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" required>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button type="submit" class="layui-btn" lay-submit lay-filter="*">立即修改</button>
+            </div>
+        </form>
+    </div>
+</div>
