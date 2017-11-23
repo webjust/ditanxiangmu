@@ -1,0 +1,33 @@
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>管理员登录</legend>
+</fieldset>
+
+<div class="data">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>IP</th>
+            <th>访问时间</th>
+        </tr>
+        </thead>
+        <tbody>
+            {volist name="logs" id="vo"}
+                <tr>
+                    <td>{$vo['admin_id']}</td>
+                    <td>{$vo['admin_id']}</td>
+                    <td>{$vo['admin_id']}</td>
+                    <td>{$vo['admin_id']}</td>
+                </tr>
+            {/volist}
+        </tbody>
+        {if condition="$page"}
+        <tfoot>
+        <tr>
+            <td colspan="99">{$page}</td>
+        </tr>
+        </tfoot>
+        {/if}
+    </table>
+</div>

@@ -3,8 +3,11 @@
 namespace app\admin\controller;
 
 use app\common\model\Admin;
+use app\common\model\AdminLog;
 use app\common\validate\LoginUserValidate;
+use app\common\model\AdminLog as AdminLogModel;
 use think\Controller;
+use think\Exception;
 
 class Login extends Controller
 {
@@ -40,6 +43,12 @@ class Login extends Controller
             try {
                 $AdminModel->updateById(['last_login_ip' => request()->ip()], $ret->admin_id);
             } catch (\Exception $e) {
+                $this->error($e->getMessage());
+            }
+            // 记录登录信息
+            try {
+                AdminLogModel::addAdminLog($ret->admin_id, $ret->username, request()->ip());
+            } catch (Exception $e) {
                 $this->error($e->getMessage());
             }
             // 记录Session

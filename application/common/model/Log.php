@@ -25,6 +25,7 @@ class Log extends Model
         return [$list, $page];
     }
 
+    /*访问量统计*/
     public static function viewPageCount($day = 1)
     {
         $condition = [];
