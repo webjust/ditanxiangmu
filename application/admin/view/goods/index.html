@@ -27,7 +27,8 @@
             <td><button class="layui-btn layui-btn-small {$vo['status']?'':'layui-btn-danger'} layui-btn-radius btn_on_off" attr-id="{$vo['g_id']}" attr-status="{$vo['status']}" type="button">{$vo['status_text']}</button></td>
             <td>{$vo['create_time']}</td>
             <?php $del_url = url('Goods/del', array('id' => $vo['g_id'])) ?>
-            <td><a href="{:url('Goods/edit', ['id' => $vo['g_id']])}">编辑</a> <button type="button" class="" href="javascript:void(0);" onclick="btn_del('{$del_url}')"><i class="layui-icon">&#xe640;</i></button></td>
+            <td><a class="" href="{:url('Goods/edit', ['id' => $vo['g_id']])}"><i class="layui-icon">&#xe642; </i></a>
+                <button type="button" class="" href="javascript:void(0);" onclick="btn_del('{$del_url}')"><i class="layui-icon">&#xe640;</i></button></td>
         </tr>
         {/volist}
         </tbody>
