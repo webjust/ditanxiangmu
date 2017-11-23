@@ -27,8 +27,7 @@ class Site extends Base
             if (empty($old_password) || empty($password) || empty($repassword))
                 $this->error("密码不能为空");
 
-            if ($user_password != md5($old_password . config('pre_md5')))
-            {
+            if ($user_password != md5($old_password . config('pre_md5'))) {
                 $this->error("原始密码输入错误");
             }
             if ($password != $repassword) {
@@ -83,7 +82,14 @@ class Site extends Base
     // 删除IP
     public function delIp()
     {
-
+        $id = input('param.id');
+        $del_ip = model("Ip")->where(["ip_id" => $id])->delete();
+        $del_ip_address = model("IpAddress")->where(["ip_id" => $id])->delete();
+        if ($del_ip && $del_ip_address) {
+            $this->success("删除成功", url("admin/site/ip"));
+        } else {
+            $this->error("删除失败");
+        }
     }
 
     /**
