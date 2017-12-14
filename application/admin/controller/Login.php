@@ -36,9 +36,6 @@ class Login extends Controller
                 $this->error("该用户不存在或者该用户已经被禁用");
             }
             $password = input('param.password');
-            dump($ret->password);
-            dump(md5($password . config('pre_md5')));
-            exit();
             if ($ret->password != md5($password . config('pre_md5'))) {
                 $this->error("输入密码错误");
             }
