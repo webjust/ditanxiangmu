@@ -22,7 +22,7 @@ class Goods extends BaseModel
 
     public static function hot()
     {
-        $res = self::limit(10)->select();
+        $res = self::limit(10)->where(['status' => 1])->select();
         return $res;
     }
 
